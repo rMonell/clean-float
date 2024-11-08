@@ -16,9 +16,11 @@ const round = (nbr: number, precision: number) => Math.round(nbr * precision) / 
  * smoothFloat(1.23e-10 + 1.1e-10) // 2.33e-10
  *
  * @param {number} nbr - The floating-point number to correct.
+ * @param {Object} options - Configuration options.
+ * @param {number} [options.minPrecision] - The minimum number of decimal places to retain, defaults to the threshold where repeating decimals are detected.
  * @returns {number} The corrected floating-point number, with artifacts removed.
  */
-export const cleanFloat = (nbr: number) => {
+export const cleanFloat = (nbr: number, options: { minPrecision?: number } = {}) => {
   const stringifiedNbr = nbr.toString()
   const decimals = stringifiedNbr.split('.')[1]
 
@@ -40,8 +42,15 @@ export const cleanFloat = (nbr: number) => {
     return nbr
   }
 
-  const roundPrecision = Math.pow(10, threshold)
+  const roundPrecision = Math.pow(
+    10,
+    options.minPrecision && options.minPrecision >= threshold ? options.minPrecision : threshold
+  )
   const powIndex = stringifiedNbr.indexOf('e')
+
+  if (roundPrecision.toString().length === decimals.length) {
+    return nbr
+  }
 
   if (powIndex >= 0) {
     const pow = stringifiedNbr.slice(powIndex)
