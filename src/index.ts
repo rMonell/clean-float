@@ -11,9 +11,9 @@ const round = (nbr: number, precision: number) => Math.round(nbr * precision) / 
  * numbers in exponential notation.
  *
  * @example
- * smoothFloat(0.2 + 0.1) // 0.3
- * smoothFloat(5555.549999999999) // 5555.55
- * smoothFloat(1.23e-10 + 1.1e-10) // 2.33e-10
+ * cleanFloat(0.2 + 0.1) // 0.3
+ * cleanFloat(5555.549999999999) // 5555.55
+ * cleanFloat(1.23e-10 + 1.1e-10) // 2.33e-10
  *
  * @param {number} nbr - The floating-point number to correct.
  * @param {Object} options - Configuration options.
