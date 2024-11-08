@@ -1,7 +1,7 @@
 {
-  "name": "cleanfloat",
-  "private": true,
+  "name": "clean-float",
   "version": "0.0.0",
+  "description": "A function to clean floating-point precision issues in JavaScript.",
   "type": "module",
   "license": "MIT",
   "scripts": {
