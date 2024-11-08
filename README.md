@@ -36,6 +36,8 @@ import { cleanFloat } from 'clean-float';
 
 cleanFloat(0.2 + 0.1); // 0.3
 cleanFloat(0.3 - 0.1); // 0.2
+cleanFloat(1 / 3); // 0.3
+cleanFloat(0.14286 * 100); // 14.286
 ```
 
 ### `minPrecision` option
@@ -47,16 +49,6 @@ const nbr = 5 / 9 // 0.5555555555555556
 
 cleanFloat(nbr); // 0.6
 cleanFloat(nbr, { minPrecision: 2 }); // 0.56
-```
-
-### More examples
-
-```js
-import { cleanFloat } from 'clean-float';
-
-cleanFloat(1.1111111); // 1.111
-cleanFloat(5555.549999999999); // 5555.55
-cleanFloat(99999999999.0123 + 0.00231432423); // 99999999999.01462
 ```
 
 ## How it works
