@@ -65,41 +65,22 @@ describe('cleanFloat', () => {
     it('should handle negative numbers in scientific notation', () => {
       expect(cleanFloat(-1.23e-10 - 1.1e-10)).toBe(-2.33e-10)
     })
-
-    it('should handle very small numbers close to zero', () => {
-      expect(cleanFloat(0.0000000000000009, { minPrecision: 5 })).toBeCloseTo(0.0)
-      expect(cleanFloat(-0.0000000000000009, { minPrecision: 5 })).toBeCloseTo(0.0)
-    })
   })
 
   describe('With min precision', () => {
     it('should round repeating decimal patterns', () => {
-      expect(cleanFloat(1.333333, { minPrecision: 4 })).toBeCloseTo(1.3333)
-      expect(cleanFloat(1.555555, { minPrecision: 5 })).toBeCloseTo(1.55556)
+      expect(cleanFloat(0.3333333333333333, { minPrecision: 2 })).toBe(0.33)
+      expect(cleanFloat(1.555555555557, { minPrecision: 3 })).toBe(1.556)
     })
 
-    it('should apply minPrecision even without repeating decimal patterns', () => {
-      expect(cleanFloat(0.1234, { minPrecision: 5 })).toBeCloseTo(0.1234)
-      expect(cleanFloat(0.999999999, { minPrecision: 5 })).toBeCloseTo(1.0)
-    })
-
-    it('should handle scientific notation', () => {
-      expect(cleanFloat(1.23e-10 + 1.1e-10, { minPrecision: 5 })).toBeCloseTo(2.33e-10)
-    })
-
-    it('should handle large numbers', () => {
-      expect(cleanFloat(123456789.987654321, { minPrecision: 3 })).toBeCloseTo(123456789.988)
-      expect(cleanFloat(123456789.987654321, { minPrecision: 5 })).toBeCloseTo(123456789.98765)
+    it('should not apply precision without repeating decimal pattern', () => {
+      expect(cleanFloat(123456789.987654321, { minPrecision: 3 })).toBe(123456789.987654321)
+      expect(cleanFloat(1.2699852, { minPrecision: 1 })).toBe(1.2699852)
     })
 
     it('should ignore minPrecision if it is less than the threshold of repeating decimals', () => {
-      expect(cleanFloat(1.333333, { minPrecision: 2 })).toBeCloseTo(1.333) // Threshold is 3, minPrecision 2 is ignored
-      expect(cleanFloat(1.555555, { minPrecision: 2 })).toBeCloseTo(1.556)
-    })
-
-    it('should handle very small numbers close to zero', () => {
-      expect(cleanFloat(0.0000000000000009, { minPrecision: 5 })).toBeCloseTo(0.0)
-      expect(cleanFloat(-0.0000000000000009, { minPrecision: 5 })).toBeCloseTo(0.0)
+      expect(cleanFloat(1.3333336, { minPrecision: 10 })).toBe(1.3333336)
+      expect(cleanFloat(1.3333336, { minPrecision: 2 })).toBe(1.33)
     })
   })
 })

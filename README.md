@@ -40,13 +40,13 @@ cleanFloat(0.3 - 0.1); // 0.2
 
 ### `minPrecision` option
 
-The `minPrecision` option allows you to specify the minimum number of decimal places to retain in the result. This is useful when you want to control the precision level even when repeating decimal patterns are detected.
+The `minPrecision` option allows you to specify specific minimum result precision. This is useful when you want to control the precision level even when repeating decimal patterns are detected.
 
 ```js
-cleanFloat(1.333333); // Result: 1.3
-cleanFloat(1.333333, { minPrecision: 4 }); // 1.3333
-cleanFloat(0.999999999, { minPrecision: 5 }); // 1.00000
-cleanFloat(1.23e-10 + 1.1e-10, { minPrecision: 5 }); // 2.33000e-10
+const nbr = 5 / 9 // 0.5555555555555556
+
+cleanFloat(nbr); // 0.6
+cleanFloat(nbr, { minPrecision: 2 }); // 0.56
 ```
 
 ### More examples
