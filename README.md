@@ -1,6 +1,8 @@
 # cleanFloat
 
-`cleanFloat` is a lightweight function designed to fix floating-point precision errors in JavaScript by rounding off inconsistent decimal values caused by binary representation of decimal numbers. It identifies unwanted repeating sequences (like repeating zeros or nines) and corrects them to provide a more accurate rounded value.
+A lightweight function designed to fix floating-point precision errors in JavaScript by rounding off inconsistent decimal values caused by binary representation of decimal numbers. It identifies unwanted repeating sequences (like repeating zeros or nines) and corrects them to provide a more accurate rounded value.
+
+[![Run Tests](https://github.com/rMonell/clean-float/actions/workflows/ci.yml/badge.svg)](https://github.com/rMonell/clean-float/actions/workflows/ci.yml)
 
 ## Why cleanFloat?
 
