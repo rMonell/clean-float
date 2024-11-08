@@ -7,6 +7,7 @@ describe('cleanFloat', () => {
       expect(cleanFloat(0.1 + 0.2)).toBe(0.3)
       expect(cleanFloat(0.3 - 0.1)).toBe(0.2)
       expect(cleanFloat(0.2 + 0.4)).toBe(0.6)
+      expect(cleanFloat(5 / 9)).toBe(0.6)
     })
 
     it('should handle repeating decimal patterns and round accordingly', () => {
