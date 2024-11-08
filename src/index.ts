@@ -1,21 +1,20 @@
 const round = (nbr: number, precision: number) => Math.round(nbr * precision) / precision
 
-
 /**
  * Corrects floating-point precision errors in JavaScript numbers.
- * 
+ *
  * The `cleanFloat` function rounds a floating-point number to remove artifacts caused
  * by binary floating-point representation errors.
- * 
+ *
  * It identifies repeating sequences in the decimal part (e.g., "0.30000000000000004" or "1.1111111")
  * and rounds to the last consistent decimal digit. This function is also capable of handling
  * numbers in exponential notation.
- * 
+ *
  * @example
  * smoothFloat(0.2 + 0.1) // 0.3
  * smoothFloat(5555.549999999999) // 5555.55
  * smoothFloat(1.23e-10 + 1.1e-10) // 2.33e-10
- * 
+ *
  * @param {number} nbr - The floating-point number to correct.
  * @returns {number} The corrected floating-point number, with artifacts removed.
  */
@@ -33,7 +32,7 @@ export const cleanFloat = (nbr: number) => {
     return nbr
   }
 
-  const threshold = match.index || 0
+  const threshold = (match.index || 0) + 1
   const exp = decimals.match(/e[+-][0-9]+$/)
   const rest = decimals.slice(threshold + match[0].length).replace(exp?.[0] || '', '')
 
