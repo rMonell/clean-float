@@ -65,3 +65,7 @@ cleanFloat(99999999999.0123 + 0.00231432423); // 99999999999.01462
 
 This function corrects typical precision artifacts from basic operations (addition, subtraction, etc.) but is not designed for scientific calculations requiring extremely high precision.
 For high-precision calculations (logarithms, square roots, etc.), consider using libraries like decimal.js.
+
+## License
+
+MIT License.
